@@ -1,0 +1,7 @@
+Requirements:
+
+numpy
+opencv-python
+matplotlib
+ipywidgets
+pandas

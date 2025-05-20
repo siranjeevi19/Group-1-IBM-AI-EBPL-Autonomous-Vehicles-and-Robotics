@@ -1,90 +1,76 @@
-# Group-1-IBM-AI-EBPL-Autonomous-Vehicles-and-Robotics
+# Autonomous Vehicle and Robotics Simulation with Smart Navigation
 
+An interactive simulation of an autonomous vehicle navigating a grid-based environment using A* pathfinding, dynamic obstacle avoidance, battery-aware routing, and data logging — all in real-time with a user-friendly GUI built in Google Colab.
 
-README: How to Run the Autonomous Vehicle Simulation
+---
 
+## Features
 
-This guide walks you through the steps to run the autonomous vehicle simulation in Google Colab or Jupyter Notebook.
+- **Smart Pathfinding:** A* algorithm enables efficient navigation across the environment.
+- **Dynamic Obstacle Handling:** Real-time updates and random movements of obstacles add realism.
+- **Battery Management:** Simulates power consumption and redirects to the nearest charging station when low.
+- **Emergency Stop:** Instantly halts all vehicle activity with a single click.
+- **Live Visualization:** Displays the grid, path, obstacles, and vehicle state visually using OpenCV and Matplotlib.
+- **Data Logging:** Records every simulation with vehicle state, route data, battery level, and success status into a CSV file.
 
--------------------------------------------------------------------------------------
+---
 
-Step 1: Upload Required Icon Files
+## Technologies Used
 
-Before running the simulation, upload the following PNG files to your environment:
-car.png
-flag.png
-rock.png
-battery.png
-charging.png
+**Languages:**  
+- Python 3
 
- ------------------------------------------------------------------------------------
+**Platform:**  
+- Google Colab
 
-Step 2: Install Required Library
+**Libraries:**  
+- `NumPy` – Array and matrix operations  
+- `OpenCV` – Visualization and image manipulation  
+- `Matplotlib` – Grid and state plotting  
+- `ipywidgets` – UI components  
+- `pandas` – Data processing and CSV logging
 
-Run the following command once to install necessary packages for the widget interface:
+---
 
-!pip install ipywidgets
+## How It Works
 
-Then, enable widget rendering 
+1. **Grid Initialization:** The environment is randomly generated with static and dynamic obstacles.
+2. **User Input:** Set your destination (X, Y) through the interface and start navigation.
+3. **A\* Algorithm:** Finds the shortest path to the destination or to the nearest charging station if battery is low.
+4. **Battery Monitoring:** Battery drains during movement; if it drops below 20%, the vehicle reroutes to a charging station.
+5. **Obstacle Avoidance:** The vehicle dynamically updates its path if an obstacle blocks the current route.
+6. **Logging:** Each run's parameters and outcomes are saved to a CSV file for later analysis.
 
-from google.colab import output
-output.enable_custom_widget_manager()
+---
 
+## Data Collection
 
--------------------------------------------------------------------------------------
+**Dataset Source:**  
+- The dataset used for this simulation was sourced from Kaggle.
 
+**Usage in Simulation:**  
+- The dataset (`dataset.csv`) can be used to simulate predefined navigation scenarios, validate behavior, and analyze vehicle performance metrics.
 
-Step 3: Load All Icons
+---
 
-In a new code cell, paste and run this code to load the icons:
+## Execution Steps
 
-import cv2
-icons = {}
+### Option 1: Google Colab
 
-for icon in ['car', 'flag', 'rock', 'battery', 'charging']:
-    icons[icon] = cv2.imread(f"{icon}.png", cv2.IMREAD_UNCHANGED)
-    assert icons[icon] is not None, f"Failed to load {icon}.png"
+1. Open the provided Google Colab notebook (`project.ipynb`).
+2. Upload the required files:
+   - `dataset.csv`
+   - Icon images: `car.png`, `flag.png`, `rock.png`, `battery.png`, `charging.png`
+3. Run the import & upload cell to load all necessary libraries and files.
+4. Run the main simulation cell to start the vehicle navigation system.
+5. Use the on-screen UI to control vehicle navigation.
+6. Upon simulation completion, the navigation log is automatically saved and downloaded as `navigation_log.csv`.
 
+### Option 2: Jupyter Notebook (Local Execution)
 
---------------------------------------------------------------------------------------
-
-
-Step 4: Define Helper Functions and Classes
-
-Run each of the following items in separate code cells:
-
-overlay_icon(img, icon, pos, size)
-
-PathPlanner class
-
-AutonomousVehicle class
-
-
-
----------------------------------------------------------------------------------------
-
-
-Step 5: Run the Simulation
-
-Finally, in a new code cell, create an instance of the vehicle:
-av = AutonomousVehicle()
-
-This will display:
-
-A destination input box
-Start and Emergency Stop buttons
-A live battery slider
-Output status logs
-
-
----------------------------------------------------------------------------------------
-
-
-How It Works
-The car starts at position (0, 0) and travels to the destination you provide.
-
-If battery drops below 20%, it automatically detours to the nearest charging station.
-
-Dynamic obstacles (like rocks) may move randomly during travel.
-
-You can stop the simulation at any time using the Emergency Stop button.
+1. Clone this repository to your local machine.
+2. Ensure you have Python 3.8+ and install required dependencies mentioned in `requirements.txt`.
+3. Place `dataset.csv` and the icon image files in the same directory as the notebook.
+4. Open `project.ipynb` in Jupyter Notebook.
+5. Run each cell in order, starting from the upload/import section.
+6. The UI will appear inline, and logs will be saved to `navigation_log.csv` in your working directory.
